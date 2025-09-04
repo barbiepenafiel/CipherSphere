@@ -40,7 +40,7 @@ export default function DashboardPage() {
     setError('');
 
     try {
-      const payload: any = {
+      const payload: { text: string; method: CipherType; decrypt: boolean; key?: string | number } = {
         text: inputText,
         method: selectedCipher,
         decrypt: isDecrypt

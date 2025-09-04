@@ -11,6 +11,7 @@ export default function RegisterPage() {
     confirmPassword: ''
   });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -18,6 +19,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
       setLoading(false);
       return;
     }
@@ -39,6 +41,9 @@ export default function RegisterPage() {
       if (response.ok) {
         router.push('/login?message=Registration successful');
       } 
+      else {
+        setError(data.error || 'Registration failed');
+      }
     } catch (error) {
       setError('Network error. Please try again.');
     } finally {
@@ -112,6 +117,12 @@ export default function RegisterPage() {
                 />
               </div>
             </div>
+
+            {error && (
+              <div className="text-red-500 text-sm text-center">
+                {error}
+              </div>
+            )}
 
             <div>
               <button

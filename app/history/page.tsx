@@ -24,7 +24,6 @@ export default function HistoryPage() {
     totalPages: 0
   });
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
 
   const fetchHistory = async (page: number = 1) => {
     setLoading(true);
@@ -35,12 +34,9 @@ export default function HistoryPage() {
       if (response.ok) {
         setHistory(data.history);
         setPagination(data.pagination);
-        setError('');
-      } else {
-        setError(data.error || 'Failed to fetch history');
-      }
+      } 
     } catch (error) {
-      setError('Network error. Please try again.');
+      console.error('Network error:', error);
     } finally {
       setLoading(false);
     }
@@ -93,12 +89,6 @@ export default function HistoryPage() {
             Total entries: {pagination.total}
           </div>
         </div>
-
-        {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-            {error}
-          </div>
-        )}
 
         {history.length === 0 && !loading ? (
           <div className="bg-white/95 backdrop-blur-sm border border-stone-200 shadow-lg rounded-xl p-8 text-center">

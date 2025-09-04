@@ -23,21 +23,19 @@ export default function DashboardPage() {
   const [isDecrypt, setIsDecrypt] = useState(false);
   const [result, setResult] = useState<CipherResult | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
   const handleCipherOperation = async () => {
     if (!inputText.trim()) {
-      setError('Please enter text to encrypt/decrypt');
+      alert('Please enter text to encrypt/decrypt');
       return;
     }
 
     if ((selectedCipher === 'CAESAR' || selectedCipher === 'VIGENERE') && !key.trim()) {
-      setError(`Please enter a ${selectedCipher === 'CAESAR' ? 'shift value' : 'key'}`);
+      alert(`Please enter a ${selectedCipher === 'CAESAR' ? 'shift value' : 'key'}`);
       return;
     }
 
     setLoading(true);
-    setError('');
 
     try {
       const payload: { text: string; method: CipherType; decrypt: boolean; key?: string | number } = {
@@ -49,7 +47,7 @@ export default function DashboardPage() {
       if (selectedCipher === 'CAESAR') {
         const shiftValue = parseInt(key);
         if (isNaN(shiftValue) || shiftValue < 0 || shiftValue > 25) {
-          setError('Caesar cipher shift must be a number between 0 and 25');
+          alert('Caesar cipher shift must be a number between 0 and 25');
           setLoading(false);
           return;
         }
@@ -70,13 +68,12 @@ export default function DashboardPage() {
 
       if (response.ok) {
         setResult(data);
-        setError('');
       } else {
-        setError(data.error || 'Cipher operation failed');
+        alert(data.error || 'Cipher operation failed');
         setResult(null);
       }
     } catch (error) {
-      setError('Network error. Please try again.');
+      alert('Network error. Please try again.');
       setResult(null);
     } finally {
       setLoading(false);
@@ -116,7 +113,6 @@ export default function DashboardPage() {
                 onClick={() => {
                   setSelectedCipher(cipher);
                   setResult(null);
-                  setError('');
                 }}
                 className={`p-4 rounded-lg border-2 transition-all transform hover:-translate-y-1 ${
                   selectedCipher === cipher
@@ -200,12 +196,6 @@ export default function DashboardPage() {
                 </label>
               </div>
             </div>
-
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-                {error}
-              </div>
-            )}
 
             <button
               onClick={handleCipherOperation}

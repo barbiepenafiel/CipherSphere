@@ -9,7 +9,6 @@ export default function LoginPage() {
     username: '',
     password: ''
   });
-  const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -17,7 +16,6 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
     setMessage('');
     setLoading(true);
 
@@ -40,10 +38,10 @@ export default function LoginPage() {
         }, 100);
       } else {
         console.log('Login failed:', data.error);
-        setError(data.error || 'Login failed');
+        setMessage(data.error || 'Login failed');
       }
     } catch (error) {
-      setError('Network error. Please try again.');
+      setMessage('Network error. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -59,12 +57,6 @@ export default function LoginPage() {
           </div>
           
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-                {error}
-              </div>
-            )}
-            
             {message && (
               <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
                 {message}

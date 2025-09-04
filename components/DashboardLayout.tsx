@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
@@ -12,19 +12,12 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline';
 
-interface User {
-  id: string;
-  username: string;
-  role: string;
-}
-
 interface DashboardLayoutProps {
   children: React.ReactNode;
   currentPage: string;
 }
 
 export default function DashboardLayout({ children, currentPage }: DashboardLayoutProps) {
-  const [user, setUser] = useState<User | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 

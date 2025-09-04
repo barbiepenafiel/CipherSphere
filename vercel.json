@@ -1,23 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "next.config.ts",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
   "env": {
-    "DATABASE_URL": "postgresql://neondb_owner:npg_YOzku1xdP8Ne@ep-polished-cake-a1408a6o-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
-    "JWT_SECRET": "@jwt_secret"
+    "DATABASE_URL": "postgresql://neondb_owner:npg_YOzku1xdP8Ne@ep-polished-cake-a1408a6o-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
   }
 }

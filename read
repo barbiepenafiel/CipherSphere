@@ -1,0 +1,59 @@
+Build me a Next.js 14 + Tailwind CSS + Prisma (with NeonDB Postgres) web app called CipherSphere.
+
+🔑 Features:
+
+Authentication System
+
+User Registration (username ≥ 6 chars, password ≥ 8 chars with letters, numbers, and special characters).
+
+Login with 3 failed attempts before blocking the account.
+
+Session-based authentication (NextAuth or custom JWT).
+
+Ciphers Module (after login)
+
+Choose between ATBASH, Caesar (shift input), and Vigenère (key input).
+
+Encrypt/Decrypt text with output displayed instantly.
+
+For every cipher result, generate a QR code (using a package like qrcode.react or qrcode).
+
+Save user history of encryptions/decryptions (with cipher type, key if used, input, output, and QR code data).
+
+UI/UX
+
+Built with Tailwind CSS.
+
+Clean dashboard layout with sidebar (Profile, Cipher Tools, History, Logout).
+
+Cipher results displayed in a styled card with the QR code rendered below the output text and a copy/export button.
+
+Database (NeonDB + Prisma)
+
+Users table (id, username, password hash, failed_attempts, blocked, createdAt).
+
+History table (id, userId, method, inputText, outputText, key, qrCodeData, createdAt).
+
+Bonus (Optional)
+
+Admin role to unblock users.
+
+Dark/light mode toggle.
+
+Deployed on Vercel.
+
+Please provide:
+
+Prisma schema for the database (with QR code data storage).
+
+API routes (register, login, cipher operations with QR generation).
+
+Cipher algorithms in TypeScript.
+
+Pages: /register, /login, /dashboard, /history.
+
+Tailwind-styled components for forms and dashboard.
+
+Integration of a QR code generator package (qrcode.react or similar).
+
+Setup instructions (prisma migrate, env config, Neon connection).

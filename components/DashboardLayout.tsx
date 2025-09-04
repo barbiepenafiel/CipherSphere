@@ -116,7 +116,7 @@ export default function DashboardLayout({ children, currentPage }: DashboardLayo
 }
 
 function SidebarContent({ navigation, onLogout }: { 
-  navigation: any[], 
+  navigation: { name: string; href: string; icon: React.ElementType; current: boolean }[], 
   onLogout: () => void 
 }) {
   return (

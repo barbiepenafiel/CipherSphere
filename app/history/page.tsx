@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 import { ClipboardIcon, ArrowDownTrayIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
 
 interface HistoryEntry {
   id: string;
@@ -12,16 +13,6 @@ interface HistoryEntry {
   key: string | null;
   qrCodeData: string;
   createdAt: string;
-}
-
-interface HistoryResponse {
-  history: HistoryEntry[];
-  pagination: {
-    total: number;
-    page: number;
-    limit: number;
-    totalPages: number;
-  };
 }
 
 export default function HistoryPage() {
@@ -185,11 +176,12 @@ export default function HistoryPage() {
                       QR Code
                     </label>
                     <div className="border border-stone-300 rounded-lg p-2 bg-white mb-2">
-                      <img
+                      <Image
                         src={entry.qrCodeData}
                         alt="QR Code"
+                        width={100}
+                        height={100}
                         className="mx-auto"
-                        style={{ width: '100px', height: '100px' }}
                       />
                     </div>
                     <button

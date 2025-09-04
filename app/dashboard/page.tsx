@@ -4,6 +4,7 @@ import { useState } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 import { CipherType } from '@/lib/ciphers';
 import { ClipboardIcon, ArrowDownTrayIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
 
 interface CipherResult {
   id: string;
@@ -249,11 +250,12 @@ export default function DashboardPage() {
                     QR Code
                   </label>
                   <div className="border border-stone-300 rounded-lg p-4 bg-white">
-                    <img
+                    <Image
                       src={result.qrCodeData}
                       alt="QR Code"
+                      width={200}
+                      height={200}
                       className="mx-auto"
-                      style={{ maxWidth: '200px', height: 'auto' }}
                     />
                   </div>
                 </div>

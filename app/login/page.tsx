@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
@@ -14,13 +14,6 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const messageParam = searchParams.get('message');
-    if (messageParam) {
-      setMessage(messageParam);
-    }
-  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -124,7 +117,7 @@ export default function LoginPage() {
 
             <div className="text-center">
               <p className="text-sm text-stone-600">
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link href="/register" className="font-medium text-amber-700 hover:text-amber-800 transition-colors">
                   Create one here
                 </Link>
